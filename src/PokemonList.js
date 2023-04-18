@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import PokemonListItem from "./PokemonListItem";
 import { Button, SimpleGrid, Stack } from "@chakra-ui/react";
 import { Link, useOutletContext } from "react-router-dom";
+
 function PokemonList() {
     const [pokemonList, setPokemonList] = useState(null);
     const [page, setPage] = useOutletContext();
@@ -13,7 +14,7 @@ function PokemonList() {
     }, [page]);
 
     const increment = () => {
-        if (page === 63) {
+        if (page === Math.floor(pokemonList.count / 20)) {
             return;
         }
         setPage(page + 1);
@@ -22,7 +23,7 @@ function PokemonList() {
         setPage(0);
     };
     const end = () => {
-        setPage(63);
+        setPage(Math.floor(pokemonList.count / 20));
     };
     const decrement = () => {
         if (page === 0) {
@@ -30,6 +31,7 @@ function PokemonList() {
         }
         setPage(page - 1);
     };
+
     return (
         <>
             <SimpleGrid columns={4} spacing={10}>
