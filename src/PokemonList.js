@@ -34,7 +34,10 @@ function PokemonList() {
 
     return (
         <>
-            <SimpleGrid columns={4} spacing={10}>
+            <SimpleGrid
+                columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+                spacing="40px"
+            >
                 {pokemonList?.results.map((object, i) => (
                     <Link to={`/pokemon/${object.name}`} key={i}>
                         <PokemonListItem
